@@ -4,6 +4,8 @@
 # 参考 
 https://github.com/martinwu42/typeset
 
+注: typeset 是python版的, 这里改成了java版
+
 # 功能
 * 全角数字、英文字母、标点改为半角
 * 空格修正
