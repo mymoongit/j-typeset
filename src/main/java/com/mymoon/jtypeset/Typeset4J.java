@@ -154,7 +154,7 @@ public class Typeset4J {
 	static Object obj = null;
 	static {		
 		try {
-			cls = Class.forName("com.mymoon.jtypeset.Typeset4J");
+			cls = Class.forName("zoo.typeset.Typeset4J");
 			obj = cls.newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -340,16 +340,16 @@ public class Typeset4J {
 			if(i == 0) {
 			    return false;
 			}			
-			if((boolean)m_f.invoke(obj, s.charAt(i + 1)) == true) {
+			if(i < s.length() -1 && (boolean)m_f.invoke(obj, s.charAt(i + 1)) == true) {
 			    return true;
 			}			
-			if (s.charAt(i + 1)+"".trim().length() == 1){
+			if (i < s.length() -1 && s.charAt(i + 1)+"".trim().length() == 1){
 			    return false;
 			}
 			if (i == s.length() - 2) {
 			    return false;
 			}
-			if((boolean)m_f.invoke(obj, s.charAt(i + 2)) == true) {	    
+			if(i < s.length() - 2 && (boolean)m_f.invoke(obj, s.charAt(i + 2)) == true) {	    
 			    return true;
 			}		
 		} catch (Exception e) {
@@ -739,7 +739,7 @@ public class Typeset4J {
 			if (lang.equals("zh")) {
 	            while(true) {
 	                String last_res_line = res_line;
-	                res_line = correct_space(res_line);
+	                // res_line = correct_space(res_line);
 	                res_line = correct_punc_zh(res_line);
 	                res_line = correct_quote_zh(res_line);
 	                res_line = correct_ellipsis(res_line, "……");
@@ -759,7 +759,7 @@ public class Typeset4J {
 	                }
 	            }
 			}
-
+			
 	        res_line = correct_minor_space(res_line);	        
 	        res_line = correct_zh_period(res_line);
 	        res_line = correct_zh_quote(res_line);
@@ -776,7 +776,7 @@ public class Typeset4J {
 		reg += eol;
 		reg += '+';
 				
-		res = res.replaceAll(reg, maxEol);
+		res = res.replaceAll(reg, maxEol).trim();
 		
 		return res;
 	}
